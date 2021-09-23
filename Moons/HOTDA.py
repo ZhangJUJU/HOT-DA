@@ -153,7 +153,7 @@ def Source_target_processing(X,y):  #grouping source (and target) data into clas
     yc_source=[]
     classes=np.unique(y)
     k=len(classes)
-    for i in range(k):#parcourir les classes
+    for i in range(k)
         C=X[y==i]
         yc_source=yc_source+list(y[y==i])
         w=np.ones(C.shape[0])/C.shape[0]#1/n
