@@ -28,17 +28,19 @@ from matplotlib import pyplot
 import seaborn as sns
 import warnings
 from sklearn.manifold import TSNE
-
 DBL_MAX = np.finfo('float').max
 DBL_MIN = np.finfo('float').min
 
+
+
+
+#algo 0, algo 1 and algo 2 are used to compute Wasserstein barycenter, for more details see: Fast Computation of Wasserstein Barycenters. Marco Cuturi, Arnaud Doucet
 def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
     lamda = 1/epsilon
     n = M.shape[0]
     l_b = M.shape[1]
     K = np.zeros((n, l_b))
     K_til = np.zeros((n, l_b))
-    
     for i in range(l_b):
         for j in range(n):
             tmp = np.exp(-lamda*M[j,i])
@@ -47,14 +49,11 @@ def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
             if np.isinf(tmp) or np.isnan(tmp):
                 K_til[j, i] = DBL_MAX
             else:
-                K_til[j, i] = tmp
-    
+                K_til[j, i] = tmp 
     it = 0
     u = np.ones(n)/n
     temp_v = np.zeros(l_b)
-    
-    while it < max_iter:
-        
+    while it < max_iter:  
         for i in range(l_b):
             tmp = 0
             for j in range(n):
@@ -66,7 +65,6 @@ def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
                 temp_v[i] = 0
             else:    
                 temp_v[i] = tmp # check for zero
-        
         for j in range(n):
             tmp = 0
             for i in range(l_b):
@@ -75,17 +73,13 @@ def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
                 u[j] = DBL_MAX
             else:
                 u[j] = 1/tmp # check for zero
-
         it = it + 1
-    
     t = np.zeros((n, l_b))
-    
     if param=='primal':
         for i in range(l_b):
             for j in range(n):
                 t[j,i] = K[j,i] * u[j] * temp_v[i]
-        return t
-    
+        return t   
     else: # param=='dual'
         alpha = np.zeros(n)
         tmp = 0
@@ -96,26 +90,22 @@ def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
         tmp = tmp/(lamda*n)
         for j in range(n):
             alpha[j] = +(tmp - u[j]/lamda)
-        return alpha
+        return alpha   
 def algo1(X, Y, b, M, weight=None, max_iter=[10,50]):
     d,n = X.shape
-    N = len(Y)
-    
+    N = len(Y)    
     # Initializing importance weights and weights of barycenter unless provided
     if weight is None:
-        weight = np.repeat(1./N, N)
-        
+        weight = np.repeat(1./N, N)      
     a_hat = a_til = np.ones(n)/n
-    t = t_0 = 1
-    
+    t = t_0 = 1 
     while t< max_iter[0]:
         beta = (t+1)/2
         a = (1-(1/beta))*a_hat+(1/beta)*a_til
         alpha_list = [algo0(a, b[i], M[i], param='dual', 
                             max_iter=max_iter[1]) for i in range(N)]
         alpha = [weight[i]*alpha_list[i] for i in range(N)]
-        alpha = np.sum(alpha, axis=0)
-        
+        alpha = np.sum(alpha, axis=0)       
         a_til_n = a_til * np.exp(-t_0*beta*alpha)  
         # Solving potential numeric issues
         if np.sum(np.isinf(a_til_n)) == 1:
@@ -124,8 +114,7 @@ def algo1(X, Y, b, M, weight=None, max_iter=[10,50]):
         elif np.all(a_til_n==0):
             a_til = np.ones((n,))/n
         else:
-            a_til = a_til_n/a_til_n.sum()
-        
+            a_til = a_til_n/a_til_n.sum() 
         a_hat = (1-1/beta)*a_hat + a_til/beta
         if np.any(np.isnan(a_hat)):
             print('Something is wrong in Algo1 Cuturi')
@@ -141,11 +130,8 @@ def algo2(Y, b, n, weight=None, max_iter=[5, 10, 50]):
     tmp_Y0=Y[0].T.copy()
     np.random.shuffle(tmp_Y0)
     X=tmp_Y0.T[:,:n]
-    
-    
     a = np.ones(n)/n
     t = 1
-    
     while t < max_iter[0]:
         print("\n[iter] :",t)
         teta = 3/4
@@ -160,8 +146,7 @@ def algo2(Y, b, n, weight=None, max_iter=[5, 10, 50]):
             print('Something is wrong in Algo2 Cuturi')
     return X, a
 
-
-def Source_target_processing(X,y):  
+def Source_target_processing(X,y):  #grouping source (and target) data into classes (and clusters)
     S=[]
     a=[]
     mu=[]
@@ -178,7 +163,7 @@ def Source_target_processing(X,y):
     mu=np.array(mu)
     return S,a,mu,yc_source
 
-def Hot(S,a,mu,T,b,nu,reg1,reg2):  
+def Hot(S,a,mu,T,b,nu,reg1,reg2):   #hierarchical formulation of OT
     W=np.zeros((len(S),len(T)))
     for i in range(len(S)):
         for j in range(len(T)):
@@ -189,7 +174,7 @@ def Hot(S,a,mu,T,b,nu,reg1,reg2):
     return hot,W
 
 
-def Mapping(S,T,a,b,HOT):
+def Mapping(S,T,a,b,HOT):   #mapping data of each class to the corresponding cluster
     index=np.argmax(HOT,1)
     Transported_S=[]
     for i in range(len(S)):
