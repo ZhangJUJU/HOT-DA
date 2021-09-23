@@ -29,10 +29,6 @@ import seaborn as sns
 import warnings
 from sklearn.manifold import TSNE
 
-"""
-Discover target measures
-"""
-
 DBL_MAX = np.finfo('float').max
 DBL_MIN = np.finfo('float').min
 
@@ -174,7 +170,7 @@ def algo2(Y, b, n, weight=None, max_iter=[5, 10, 50]):
     return X, a
 
 
-def Source_target_processing(X,y):  # y must be an np.array and not a list.
+def Source_target_processing(X,y):  
     S=[]
     a=[]
     mu=[]
@@ -187,7 +183,7 @@ def Source_target_processing(X,y):  # y must be an np.array and not a list.
         w=np.ones(C.shape[0])/C.shape[0]#1/n
         S.append(C)#stocker les classes
         a.append(w)
-        mu.append(C.shape[0]/X.shape[0])#nb_donner_class/nb_total
+        mu.append(C.shape[0]/X.shape[0])
     mu=np.array(mu)
     return S,a,mu,yc_source
 
