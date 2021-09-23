@@ -116,8 +116,7 @@ def algo1(X, Y, b, M, weight=None, max_iter=[10,50]):
         alpha = [weight[i]*alpha_list[i] for i in range(N)]
         alpha = np.sum(alpha, axis=0)
         
-        a_til_n = a_til * np.exp(-t_0*beta*alpha)
-        
+        a_til_n = a_til * np.exp(-t_0*beta*alpha)  
         # Solving potential numeric issues
         if np.sum(np.isinf(a_til_n)) == 1:
             a_til = np.zeros((n,))
@@ -139,8 +138,6 @@ def algo2(Y, b, n, weight=None, max_iter=[5, 10, 50]):
     # weights of barycenter unless provided
     if weight is None:
         weight = np.repeat(1./N, N)
-    #X = np.random.normal(3, 5, (d,n))
-    #X=Z.T
     tmp_Y0=Y[0].T.copy()
     np.random.shuffle(tmp_Y0)
     X=tmp_Y0.T[:,:n]
@@ -154,19 +151,13 @@ def algo2(Y, b, n, weight=None, max_iter=[5, 10, 50]):
         teta = 3/4
         M = [cdist(X.T,Y[i].T, metric='sqeuclidean') for i in range(N)]
         a = algo1(X, Y, b, M, weight=weight, max_iter=max_iter[1:])
-        print("[a] -------------\n",a)
         T_list = [algo0(a, b[i], M[i], max_iter=max_iter[2]) for i in range(N)]
-        #print("T -------------\n",T_list[0])
         g = [weight[i]*np.dot(Y[i],T_list[i].T) for i in range(N)]
         g = np.sum(g, axis=0)/a[None,:]
         X = (1-teta)*X + teta*g
-        #np.add(X,0.1*np.reshape(np.random.randn(X.size),X.shape))
-        print("[X] -------------\n",X.T)
-        #plot(X,Y)
         t = t+1
         if np.any(np.isnan(X)):
             print('Something is wrong in Algo2 Cuturi')
-    
     return X, a
 
 
@@ -181,7 +172,7 @@ def Source_target_processing(X,y):
         C=X[y==i]
         yc_source=yc_source+list(y[y==i])
         w=np.ones(C.shape[0])/C.shape[0]#1/n
-        S.append(C)#stocker les classes
+        S.append(C)
         a.append(w)
         mu.append(C.shape[0]/X.shape[0])
     mu=np.array(mu)
