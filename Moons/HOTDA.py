@@ -156,7 +156,7 @@ def Source_target_processing(X,y):  #grouping source (and target) data into clas
     for i in range(k)
         C=X[y==i]
         yc_source=yc_source+list(y[y==i])
-        w=np.ones(C.shape[0])/C.shape[0]#1/n
+        w=np.ones(C.shape[0])/C.shape[0]
         S.append(C)
         a.append(w)
         mu.append(C.shape[0]/X.shape[0])
