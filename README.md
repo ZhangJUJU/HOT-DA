@@ -14,19 +14,27 @@ It is recommend to use `Python 3.8` from [Anaconda](https://www.anaconda.com/) d
 
 ## Scripts for experiments:
 To reproduce the results, four `jupyter notebook` are provided:
+
  1 - `/Moons/Experimentation_Moons.ipynb`
+ 
  2.a - `/Digits/Mnist_USPS.ipynb`
+ 
  2.b - `/Digits/USPS_Mnist.ipynb`
+ 
  3 - `/Objetcs/Experimentation_Objects.ipynb`
-  We also release the used `datasets`
+ 
+ We also release the used `datasets`
  
  
  ## Scripts for figures:
 
 ○ Comparaison with structure-target-agnostic methods - ``
+
 ○ Wasserstein-Spectral clustering - `/HOT-DA/Wasserstein Spectral Clustering.ipynb`
+
 ○ Decision boundary on moons can be generatd from `/Moons/Experimentation_Moons.ipynb`
 
 
 ## Other scripts:
+
 ● Main class for our algorithm:  `HOTDA.py`
