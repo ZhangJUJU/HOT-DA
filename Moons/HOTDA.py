@@ -34,7 +34,7 @@ DBL_MIN = np.finfo('float').min
 
 
 
-#algo 0, algo 1 and algo 2 are used to compute Wasserstein barycenter, for more details see: Fast Computation of Wasserstein Barycenters. Marco Cuturi, Arnaud Doucet
+#algo0, algo1 and algo2 are used to compute Wasserstein barycenter, for more details see: Fast Computation of Wasserstein Barycenters. Marco Cuturi, Arnaud Doucet
 def algo0(a, b, M, epsilon = 0.1, param='primal', max_iter=50):
     lamda = 1/epsilon
     n = M.shape[0]
