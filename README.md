@@ -23,7 +23,7 @@ To reproduce the results, four `jupyter notebook` are provided:
  
  3 - `/Objetcs/Experimentation_Objects.ipynb`
  
- We also release the used `datasets` (within each of the three files)
+ We also release the used `datasets` (within each of the three files Moons, Digits and Objects)
  
  
  ## Scripts for figures:
