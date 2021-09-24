@@ -23,18 +23,18 @@ To reproduce the results, four `jupyter notebook` are provided:
  
  3 - `/Objetcs/Experimentation_Objects.ipynb`
  
- We also release the used `datasets`
+ We also release the used `datasets` (within each of the three files)
  
  
  ## Scripts for figures:
 
-○ Comparaison with structure-target-agnostic methods - `/HOT-DA/Comparaison with structure-target-agnostic methods.ipynb`
+○ Comparaison with structure-target-agnostic methods - `/Comparaison with structure-target-agnostic methods.ipynb`
 
-○ Wasserstein-Spectral clustering - `/HOT-DA/Wasserstein Spectral Clustering.ipynb`
+○ Wasserstein-Spectral clustering - `/Wasserstein Spectral Clustering.ipynb`
 
-○ Decision boundary on moons dataset - `HOT-DA/Moons_DecisionBoundary.ipynb`
+○ Decision boundary on moons dataset - `/Moons_DecisionBoundary.ipynb`
 
 
 ## Other scripts:
 
-● Main class for our algorithm:  `HOTDA.py`
+● Main class for our algorithm:  `/HOTDA.py`
