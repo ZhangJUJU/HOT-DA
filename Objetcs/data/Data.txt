@@ -1,0 +1,2 @@
+Object recognition data (Office-Caltech) ​is too voluminous to be uploaded on Github.
+Please download it from the following link:  https://www.mediafire.com/file/k3ym5tecbhteou7/data.rar/file
