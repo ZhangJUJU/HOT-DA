@@ -28,7 +28,7 @@ To reproduce the results, four `jupyter notebook` are provided:
  
  ## Scripts for figures:
 
-○ Comparaison with structure-target-agnostic methods - `Limitation of structure-target-agnostic methods.ipynb`
+○ Comparaison with structure-target-agnostic methods - `/HOT-DA/Comparaison with structure-target-agnostic methods.ipynb`
 
 ○ Wasserstein-Spectral clustering - `/HOT-DA/Wasserstein Spectral Clustering.ipynb`
 
