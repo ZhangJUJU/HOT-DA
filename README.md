@@ -1,4 +1,4 @@
-# Hierarchical Optimal Transport for Unsupervised Domain Adaptation (HOT-DA)- submitted to AAAI22
+# Hierarchical Optimal Transport for Unsupervised Domain Adaptation (HOT-DA) - Submitted to AAAI22
 
 ## Installation and Dependencies
 
