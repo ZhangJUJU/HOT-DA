@@ -28,11 +28,11 @@ To reproduce the results, four `jupyter notebook` are provided:
  
  ## Scripts for figures:
 
-○ Comparaison with structure-target-agnostic methods - `/Comparaison with structure-target-agnostic methods.ipynb`
+● Comparaison with structure-target-agnostic methods - `/Comparaison with structure-target-agnostic methods.ipynb`
 
-○ Wasserstein-Spectral clustering - `/Wasserstein Spectral Clustering.ipynb`
+● Wasserstein-Spectral clustering - `/Wasserstein Spectral Clustering.ipynb`
 
-○ Decision boundary on moons dataset - `/Moons_DecisionBoundary.ipynb`
+● Decision boundary on moons dataset - `/Moons_DecisionBoundary.ipynb`
 
 
 ## Other scripts:
