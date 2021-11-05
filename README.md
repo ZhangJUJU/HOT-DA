@@ -34,6 +34,8 @@ To reproduce the results, four `jupyter notebook` are provided:
 
 ● Decision boundary on moons dataset - `/Moons_DecisionBoundary.ipynb`
 
+● Unbalanced structures analysis - `/Unbalanced structures sensitivity.ipynb`
+
 
 ## Other scripts:
 
