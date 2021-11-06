@@ -32,7 +32,7 @@ To reproduce the results, four `jupyter notebook` are provided:
 
 ● Wasserstein-Spectral clustering - `/Wasserstein Spectral Clustering.ipynb`
 
-● Decision boundary on moons dataset - `/Moons_DecisionBoundary.ipynb`
+● Decision boundary on moons dataset - ` /Moons_DecisionBoundary.ipynb`
 
 ● Unbalanced structures analysis - `/Unbalanced structures sensitivity.ipynb`
 
